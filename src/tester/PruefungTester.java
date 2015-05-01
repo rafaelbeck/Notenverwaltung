@@ -6,6 +6,7 @@ public class PruefungTester {
 	public static void main(String[] args) {
 		try {
 			Pruefung p3 = new Pruefung("24.04.2015");
+			System.out.println(p3);
 			p3.setNote(5);
 			System.out.println(p3);
 		} catch ( IllegalArgumentException e) {

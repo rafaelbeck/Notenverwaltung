@@ -20,7 +20,7 @@ public class Fach {
 		return gewicht;
 	}
 	public String toString() {
-		return "Fach:   " + getBezeichnung() + 
+		return "Fach:   " + getBezeichnung() +
 				"\n        Gewicht: " + getGewicht();
 	}
 }
