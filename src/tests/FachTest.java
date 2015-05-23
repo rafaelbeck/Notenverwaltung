@@ -2,10 +2,11 @@ package tests;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
+import static org.junit.Assert.*;
 import pd.Fach;
 import pd.Pruefung;
+import pd.Referat;
 
 public class FachTest {
 
@@ -18,7 +19,7 @@ public class FachTest {
 	
 	@Test
 	public void testOhnePruefung() {
-		assertEquals(0, f.getAnzahlPruefungen());
+		assertEquals(0, f.getAnzahlLeistungsnachweise());
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -29,7 +30,7 @@ public class FachTest {
 	@Test
 	public void testMitEinerPrüfung() {
 		f.neuePruefungHinzufügen("09.05.2015", 5.5);
-		assertEquals(1, f.getAnzahlPruefungen());
+		assertEquals(1, f.getAnzahlLeistungsnachweise());
 	}
 	
 	@Test
@@ -42,10 +43,20 @@ public class FachTest {
 	@Test
 	public void testSuchePruefungSetzeNote() {
 		f.neuePruefungHinzufügen("18.02.2000");
-		Pruefung p = f.getPruefung("18.02.2000");
+		Pruefung p = (Pruefung) f.getPruefung("18.02.2000");
 		if (p!=null) {
 			p.setNote(5.8);
 		}
 		assertEquals(5.8, f.getFachnote(), 0.001);
+	}
+	
+	@Test
+	public void testSuchReferatSetzeNote() {
+		f.neuesReferatHinzufügen("23.05.2015", 0.2);
+		Referat r = (Referat) f.getReferat("23.05.2015");
+		if (r!=null) {
+			r.setNoten(5, 4.5);
+		}
+		assertEquals(4.9, f.getFachnote(), 0.001);
 	}
 }
